@@ -74,7 +74,16 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<ProductDTO> getAllProducts() {
-		return this.productList;
+		
+		List<ProductEntity> productEntities = this.productRepository.getAllProducts();
+		
+		List<ProductDTO> productDtoList = new ArrayList<>();
+		
+		for(ProductEntity pe:productEntities) {
+			ProductDTO pdto = ProductConverter.convertProductEntitytoProductDTO(pe);
+			productDtoList.add(pdto);
+		}
+		return productDtoList;
 	}
 
 	@Override
@@ -89,8 +98,8 @@ public class ProductServiceImpl implements ProductService {
 		return foundProducts;
 	}
 
-	@Override
-	public ProductDTO updateProductPrice(Long productId, Double newPrice) {
+	//@Override
+	public ProductDTO updateProductPriceNonDB(Long productId, Double newPrice) {
 		ProductDTO dto = this.getProduct(productId);
 		if (null != dto) {
 			dto.setPricePerQty(newPrice);
@@ -105,9 +114,26 @@ public class ProductServiceImpl implements ProductService {
 		}
 		return null;
 	}
+	
+	@Override
+	public ProductDTO updateProductPrice(Long productId, Double newPrice) {
+		
+		ProductEntity pe = this.productRepository.updateProductPrice(productId, newPrice);
+		ProductDTO dto = ProductConverter.convertProductEntitytoProductDTO(pe);
+		
+		return dto;
+	}
 
 	@Override
 	public ProductDTO deleteProductById(Long productId) {
+		
+		ProductEntity pe = this.productRepository.deleteProductById(productId);
+		ProductDTO dto = ProductConverter.convertProductEntitytoProductDTO(pe);
+		
+		return dto;
+	}
+	//@Override
+	public ProductDTO deleteProductByIdNonDB(Long productId) {
 		
 		ProductDTO productTobeDeleted = null;
 		List<ProductDTO> newListOfProducts = new ArrayList<>();

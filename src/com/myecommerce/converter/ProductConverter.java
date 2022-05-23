@@ -34,6 +34,8 @@ public class ProductConverter {
 		
 		CategoryDTO categoryDTO = new CategoryDTO();
 		categoryDTO.setCategoryId(pe.getCategoryEntity().getCategoryId());
+		categoryDTO.setCategoryName(pe.getCategoryEntity().getCategoryName());
+		categoryDTO.setDescription(pe.getCategoryEntity().getDescription());
 		productDTO.setCategoryDTO(categoryDTO);
 		
 		return productDTO;

@@ -20,3 +20,23 @@ CREATE  TABLE IF NOT EXISTS `Product` (
    FOREIGN KEY(category_id_fk) REFERENCES Category(category_id) ,
   PRIMARY KEY (`product_id`) 
  );
+
+SELECT * FROM `product` p, `category` c WHERE p.category_id_fk = c.category_id;
+
+SELECT p.product_name, p.description, p.price_per_qty, p.available_qty, c.category_name, c.description
+FROM `product` p, `category` c WHERE p.category_id_fk = c.category_id;
+
+SELECT p.product_name as 'Product Name', p.description, p.price_per_qty, p.available_qty, c.category_name, c.description FROM `product` p, `category` c WHERE p.category_id_fk = c.category_id;
+ 
+SELECT p.product_id, p.product_name, p.description as 'product_description', p.price_per_qty, p.available_qty, c.category_name, c.description FROM `product` p, `category` c WHERE p.category_id_fk = c.category_id;
+ 
+UPDATE `product` SET `price_per_qty` = 1000 WHERE `product_id` = 2;
+
+DELETE FROM `product` WHERE `product_id` = 2 AND `product_name` = 'ABC';
+ 
+ //////////////
+ Ctrl + O will help to find a method inside a class
+ Ctrl + Shift + R will help you find any file *filename*
+ Long press Ctrl and hover mouse on andy method and click on it, it will take you to that method
+ Rt Click on any method and choose open call hierarchy to find from where this method is called
+ 

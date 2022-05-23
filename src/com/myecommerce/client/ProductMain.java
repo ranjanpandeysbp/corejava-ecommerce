@@ -146,6 +146,8 @@ public class ProductMain {
 				System.out.println("Product Id: " + productDTO.getProductId());
 				System.out.println("Product Name : " + productDTO.getProductName());
 				System.out.println("Product Price : " + productDTO.getPricePerQty());
+				System.out.println("Available Qty : " + productDTO.getAvailableQty());
+				System.out.println("Category name : " + productDTO.getCategoryDTO().getCategoryName());
 			}
 		}
 
@@ -165,13 +167,12 @@ public class ProductMain {
 		dto.setPricePerQty(sc.nextDouble());
 		System.out.println("Enter product qty: ");
 		dto.setAvailableQty(sc.nextInt());
-		sc.nextLine();//flushes the stream
-		System.out.println("Enter product category: ");
+		System.out.println("Enter category id: ");
 		CategoryDTO categoryDTO = new CategoryDTO();
-		categoryDTO.setCategoryId(1L);
-		categoryDTO.setCategoryName(sc.nextLine());
-		
+		categoryDTO.setCategoryId(sc.nextLong());
+		sc.nextLine();//flushes the stream
 		dto.setCategoryDTO(categoryDTO);
+		
 		ProductDTO productDTO = null;
 		try {
 			productDTO = productService.addProduct(dto);
